@@ -1,0 +1,190 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+   
+}
+#main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 55px;
+    margin-top: 40px;
+}
+#addBtn{
+    /* position: fixed; */
+    right: 10px;
+    top: 10px;
+    background-color: #4db1b1;
+    color:#0c0606;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    margin-left: 35px;
+}
+#addBtn:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+#readMeBtn{
+    right: 10px;
+    top: 10px;
+    background-color: #4db1b1;
+    color:#333333;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    margin-left: 35px;
+    
+}
+#readMeBtn:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+#diagram{
+    right: 10px;
+    top: 10px;
+    background-color: #4db1b1;
+    color:#333333;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    margin-left: 35px;
+}
+#diagram:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+.for-space{
+   margin: 20px;
+   
+}
+.faizan{
+    height: 59px;
+    width: 500px;
+    background-color:rgb(10, 103, 140);
+    font-size: 38px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border:#fff ;
+}
+
+.note.fullscreen .faizan {
+    width: 100%;
+}
+
+
+.note{
+    width: 500px;
+    height: 400px;
+    background-color: #333333;
+    margin: 48px;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+#searchInput{
+    width: 400px;
+}
+#searchInput:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+.btn-outline-success{
+    width: 150px;
+    
+}
+.btn-outline-success:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+    
+}
+
+.tool{
+    width: 100%;
+    background-color:#4db1b1;
+    color: #9e1ee3;
+    padding: 5px;
+    display: flex;
+    justify-content: end;
+    text-align: center;
+    
+}
+
+    .heading-center {
+        text-align: center;
+    }
+
+
+.tool ion-icon{
+    padding: 5px;
+    color: #fff;
+}   
+
+
+.note textarea{
+    border-spacing: 1px solid #fff;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 10px;
+    color: #fff;
+    background-color: black;
+   
+}
+.note textarea:focus{
+    border: 0px;
+    outline: 0px;
+    font-size: 18px;
+}
+
+#darkModeToggle{
+    
+    
+    background-color: #4db1b1;
+    color:#333333;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+}
+
+#darkModeToggle:hover{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+.dark-mode {
+    background-color: black;
+    color: #ffffff;
+}
+
+
+.dark-mode .note {
+    background-color:#fff;
+    color: black;
+
+}
+
+
+.message-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.message-container ion-icon {
+    margin-right: 10px;
+}

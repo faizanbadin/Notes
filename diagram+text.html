@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Whiteboard</title>
+    <link rel="stylesheet" href="diagram.css">
+</head>
+<body>
+    <div>
+        <canvas id="textBoard"></canvas>
+        <button id="clearTextBoard">Clear Text</button>
+    </div>
+    <div>
+        <canvas id="diagramBoard"></canvas>
+        <input type="color" id="colorPicker">
+        <button id="clearDiagramBoard">Clear Diagram</button>
+    </div>
+    <script>
+        const textCanvas = document.getElementById('textBoard');
+const textContext = textCanvas.getContext('2d');
+const diagramCanvas = document.getElementById('diagramBoard');
+const diagramContext = diagramCanvas.getContext('2d');
+
+// Set canvas size
+textCanvas.width = diagramCanvas.width = window.innerWidth / 2 - 20;
+textCanvas.height = diagramCanvas.height = window.innerHeight - 100;
+
+// Initialize WebSocket connection
+const ws = new WebSocket('ws://localhost:3000');
+
+// Handle WebSocket events
+ws.onopen = () => {
+    console.log('WebSocket connection established.');
+};
+
+ws.onerror = (error) => {
+    console.error('WebSocket error:', error);
+};
+
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === 'text') {
+        drawText(data);
+    } else if (data.type === 'diagram') {
+        drawDiagram(data);
+    }
+};
+
+// Function to draw text on canvas
+function drawText(data) {
+    textContext.font = '20px Arial';
+    textContext.fillText(data.text, data.x, data.y);
+}
+
+// Function to draw diagram on canvas
+function drawDiagram(data) {
+    diagramContext.strokeStyle = data.color;
+    diagramContext.lineWidth = data.size;
+    diagramContext.lineCap = 'round';
+    diagramContext.beginPath();
+    diagramContext.moveTo(data.prevX, data.prevY);
+    diagramContext.lineTo(data.currX, data.currY);
+    diagramContext.stroke();
+}
+
+// Event listener to handle clear text board button
+document.getElementById('clearTextBoard').addEventListener('click', () => {
+    textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
+});
+
+// Event listener to handle clear diagram board button
+document.getElementById('clearDiagramBoard').addEventListener('click', () => {
+    diagramContext.clearRect(0, 0, diagramCanvas.width, diagramCanvas.height);
+});
+
+// Event listeners to handle diagram drawing
+let diagramDrawing = false;
+let diagramPrevX = 0;
+let diagramPrevY = 0;
+
+diagramCanvas.addEventListener('mousedown', (event) => {
+    diagramDrawing = true;
+    diagramPrevX = event.offsetX;
+    diagramPrevY = event.offsetY;
+});
+
+diagramCanvas.addEventListener('mouseup', () => {
+    diagramDrawing = false;
+});
+
+diagramCanvas.addEventListener('mousemove', (event) => {
+    if (diagramDrawing) {
+        const data = {
+            type: 'diagram',
+            prevX: diagramPrevX,
+            prevY: diagramPrevY,
+            currX: event.offsetX,
+            currY: event.offsetY,
+            color: document.getElementById('colorPicker').value,
+            size: 2 // Set your desired line size here
+        };
+
+        drawDiagram(data);
+        ws.send(JSON.stringify(data));
+
+        diagramPrevX = event.offsetX;
+        diagramPrevY = event.offsetY;
+    }
+});
+
+// Event listener to handle text drawing
+textCanvas.addEventListener('click', (event) => {
+    const text = prompt('Enter your text:');
+    if (text) {
+        const data = {
+            type: 'text',
+            text,
+            x: event.offsetX,
+            y: event.offsetY
+        };
+
+        drawText(data);
+        ws.send(JSON.stringify(data));
+    }
+});
+
+    </script>
+</body>
+</html>

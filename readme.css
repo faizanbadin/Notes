@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form input, .form select, .form button {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#attendanceList {
+    margin-top: 20px;
+}
+
+#attendanceList div {
+    margin-bottom: 10px;
+}
+
+#attendanceList div span {
+    font-weight: bold;
+}
+
+#attendanceList div button {
+    float: right;
+}
+
+#saveBtn img {
+    width: 20px;
+    height: 20px;
+}

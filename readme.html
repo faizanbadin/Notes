@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <link rel="stylesheet" href="readme.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>READ ME</h1>
+        <div class="form">
+            <select id="subject">
+                <option value="Computer Organization and Assembly Language">Computer Organization and Assembly Language</option>
+                <option value="data-structures">Data Structures and Algorithms</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Linear Algebra">Linear Algebra</option>
+                <option value="Human Resource Management">Human Resource Management</option>
+            </select>
+            <input type="number" id="noteNumber" placeholder="Note Number">
+            <input type="text" id="topic" placeholder="Topic">
+            <input type="date" id="date">
+            <input type="text" id="teacher" placeholder="Teacher">
+            <select id="attendance">
+                <option value="present">Present</option>
+                <option value="absent">Absent</option>
+            </select>
+            <button id="saveBtn"><ion-icon name="save" class="save1"></ion-icon></button>
+        </div>
+        <div id="attendanceList"></div>
+
+        <!-- Success message -->
+        <div id="successMessage" style="display: none;">Successfully saved.</div>
+
+        <!-- Deleted message -->
+        <div id="deletedMessage" style="display: none;">Deleted.</div>
+    </div>
+    <script src="readme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.2/marked.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>
